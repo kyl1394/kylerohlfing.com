@@ -11,51 +11,55 @@ document.body.onmouseup = function() {
   --mouseDown;
 }
 
-class Square extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      value: null
-    };
-  }
-  render() {
-    var clickedStyle = {
-      background: this.state.value
-    }
-    return (
-      <button
-        className="square"
-        onMouseEnter={() => {
-          if (mouseDown) {
-            this.setState({value: 'black'})
-          }
-        }}
-        onMouseDown={() => {
-          if (mouseDown) {
-            this.setState({value: 'black'})
-          }
-        }}
-        style={clickedStyle}>
-        </button>
-    )
-  }
+function Square(props) {
+  // onMouseEnter={props.onEnter()}
+  // style={clickedStyle}
+  return (
+    <button
+      className="square"
+      onMouseDown={props.onClick}>
+      </button>
+  )
 }
 
 class Canvas extends Component {
-  paintSquare() {
-    const pixels = this.state.pixels.slice();
+  constructor(props) {
+    super(props);
 
-    this.props.value = 'X';
+    this.state = {
+      history: [{
+        pixels: Array(15).fill(Array(15).fill(null))
+      }],
+      stepNumber: 0
+    }
+  }
+
+  paintSquare(i) {
+    const history = this.state.history.slice(0, this.state.stepNumber + 1);
+    const current = history[history.length - 1];
+    const pixels = current.pixels.slice();
+
+    if (mouseDown) {
+      pixels[i] = 'black'
+    }
+
+    this.setState({
+      history: history.concat([{
+        pixels: pixels
+      }]),
+      stepNumber: history.length
+    });
   }
 
   render() {
-    var pixels = Array(15).fill(Array(15).fill(null));
+    const history = this.state.history;
+    const current = history[this.state.stepNumber];
     var rowIndex = -1;
 
     return (
       <div>
         {
-          pixels.map(function(row) {
+          history[this.state.stepNumber].pixels.map(function(row) {
             rowIndex++;
             var pixelIndex = 0;
             return (
@@ -64,6 +68,7 @@ class Canvas extends Component {
                   row.map(function(index) {
                     return <Square
                       key={ "pixel-" + rowIndex + ":" + pixelIndex++ }
+                      onClick={(i) => this.paintSquare(i)}
                     />;
                   })
                 }

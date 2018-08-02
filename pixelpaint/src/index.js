@@ -5,5 +5,7 @@ import App from './App';
 import Canvas from './Canvas'
 import registerServiceWorker from './registerServiceWorker';
 
-ReactDOM.render(<Canvas />, document.getElementById('root'));
+ReactDOM.render(
+  <App />,
+   document.getElementById('root'));
 registerServiceWorker();
