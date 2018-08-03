@@ -1,0 +1,33 @@
+.navbar {
+  display: flex;
+  padding-top: 8px;
+  width: 100%;
+}
+
+.linkContainer {
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    flex: 1;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.logo {
+  display: inline-block;
+}
+
+a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 16px 40px;
+    font-size: 16px;
+    text-decoration: underline;
+}
+
+a:hover:not(.active) {
+    background-color: #111;
+    border-radius: 14px;
+}
