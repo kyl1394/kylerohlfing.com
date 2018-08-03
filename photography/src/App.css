@@ -29,37 +29,90 @@
 
 .mainlayout {
   display: grid;
-  grid-template-rows: 1fr 2fr 18fr;
-  grid-template-columns: 1fr 4fr 8fr 1fr;
-  grid-column-gap: 3em;
-  grid-row-gap: 5px;
-  grid-template-areas:
-    ".  navbar  navbar  ."
-    ".    .     content ."
-    ".  sidebar content .";
   width: 100%;
   height: 100%;
-  background-image: url('./background.jpg');
-  background-size: 100% 100%;
-  background-repeat: no-repeat;
-}
-
-.logo {
-  /* grid-area: logo;
-  background-image: url('./logo.png');
-  background-size: 100% 100%;
-  background-repeat: no-repeat; */
 }
 
 .navbar {
   grid-area: navbar;
 }
 
-.sidebar {
-  grid-area: sidebar;
-  color: white;
-}
-
 .content {
   grid-area: content;
+}
+
+.content-mobile {
+  grid-area: content-mobile;
+  background-color: #333;
+}
+
+.background {
+  width: 100%;
+}
+
+.divider {
+  grid-area: divider;
+}
+
+.sidebar {
+  grid-area: sidebar;
+}
+
+@media only screen and (min-width: 1100px) {
+  .mainlayout {
+    grid-template-rows: 65px 2fr auto;
+    grid-template-columns: 1fr 4fr 8fr 1fr;
+    grid-column-gap: 3em;
+    grid-row-gap: 2em;
+    grid-template-areas:
+      ".  navbar  navbar  ."
+      ".  sidebar content ."
+      ".  sidebar content .";
+    background-image: url('./background.jpg');
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
+  }
+
+  .divider {
+    display: none;
+  }
+
+  .sidebar {
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .content-mobile {
+    display: none;
+  }
+}
+
+@media only screen and (max-width: 1099px) {
+  .mainlayout {
+    grid-template-rows: auto auto 45px 1fr;
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      "navbar"
+      "content-mobile"
+      "divider"
+      "sidebar";
+  }
+
+  .navbar {
+    background-color: #333;
+  }
+
+  .divider {
+    background-color: #333;
+    width: 100%;
+    height: 100%;
+  }
+
+  .sidebar {
+    color: black;
+    padding: 15px;
+  }
 }

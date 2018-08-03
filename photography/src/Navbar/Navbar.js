@@ -5,7 +5,7 @@ class Navbar extends Component {
   render() {
     return (
       <div className="navbar">
-        <img src="/logo.png" className="logo"/>
+        <img src='/logo.png' className="logo" />
         <nav className="linkContainer">
             <a className="navItem active" href="#home">HOME</a>
             <a className="navItem" href="#news">NEWS</a>

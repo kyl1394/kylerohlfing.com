@@ -8,10 +8,14 @@ class App extends Component {
   render() {
     return (
       <div className="mainlayout">
-        <header className="logo"></header>
         <div className="navbar">
           <Navbar/>
         </div>
+        <main className="content"></main>
+        <main className="content-mobile">
+          <img src="/background.jpg" className="background" />
+        </main>
+        <span className="divider">&nbsp;</span>
         <aside className="sidebar">
           <p>
             <strong>WEBSITE COMING SOON.</strong>
@@ -25,7 +29,6 @@ class App extends Component {
           </p>
 
         </aside>
-        <main className="content"></main>
       </div>
     );
   }
