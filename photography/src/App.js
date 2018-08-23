@@ -7,14 +7,21 @@ import Gallery from './Gallery/Gallery.js';
 import logo from './logo.svg';
 import './App.css';
 
+let urls = [];
+
 class App extends Component {
   render() {
+    var req = require.context("../public/assets", false, /.*\.jpg/);
+    req.keys().forEach(function(key){
+      urls.push('/assets' + key.substr(1));
+    });
+
     return (
       <div className="pagelayout">
         <Header className="header"/>
         <Navbar className="navbar"/>
         <Sidebar className="sidebar"/>
-        <Gallery className="gallery"/>
+        <Gallery imageUrls={urls} className="gallery"/>
       </div>
     );
   }
